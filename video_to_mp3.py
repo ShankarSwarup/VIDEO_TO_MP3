@@ -1,5 +1,4 @@
 from tkinter import * 
-from tkinter import ttk
 import moviepy.editor as mp
 from tkinter import filedialog as fd
 import datetime
