@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import moviepy.editor as mp
 from tkinter import filedialog as fd
-from time import strftime
+import datetime
 
 class video:
     def __init__(self, root):
@@ -20,7 +20,7 @@ class video:
         txt_location=Entry(self.root,textvariable=self.download_path,font=("times new roman",13),bg="#d9fcff").place(x=260,y=100,width=340,height=30)
 
 
-        btn_dir = Button(self.root, text='Choose folder', command=self.Browse, font=("times new roman", 13, 'bold'), bg='#607d8b',
+        btn_dir = Button(self.root, text='Choose File', command=self.Browse, font=("times new roman", 13, 'bold'), bg='#607d8b',
                          fg='white').place(x=640, y=100, width=150, height=20)
 
         btn_convert = Button(self.root, text='Convert', command=self.convert, font=("times new roman", 13, 'bold'), bg='black',
@@ -34,10 +34,8 @@ class video:
 
     def convert(self):
         video=mp.VideoFileClip(self.download_path.get())
-        current_date_and_time_string =strftime('%H%M%S')
-        extension = ".mp3"
-
-        file_name =  current_date_and_time_string + extension
+        time_stamp=datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+        file_name=f'audio-{time_stamp}.mp3'
         video.audio.write_audiofile(file_name)
 
 
